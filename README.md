@@ -8,7 +8,7 @@ __Essa página está sendo criada para eu postar todos meus projetos e idéias, 
   - Stitches (Css in Js)
   - React Router Dom
 
-**Como iniciar o projeto?**
+# Como iniciar o projeto?
 
 ## Na pasta raiz do projeto utilize os seguintes comandos:
 
