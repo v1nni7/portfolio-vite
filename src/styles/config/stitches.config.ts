@@ -12,10 +12,10 @@ export const {
 } = createStitches({
     theme: {
         colors: {
-            textColor: '#837E9F',
-            bgBodyColor: '#22212C',
-            bgCardColor: '#302F3D',
-            bgTechsColor: '#CB92B1',
+            lightBlueGray: '#837E9F',
+            darkGray: '#22212C',
+            darkBlueGray: '#302F3D',
+            lightPink: '#CB92B1',
         }
     },
     media: {

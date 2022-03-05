@@ -6,10 +6,15 @@ export const globalStyles = globalCss({
         fontFamily: 'Merriweather Sans',
     },
 
+    'img': {
+        maxWidth: '100%',
+        height: 'auto',
+    },
+
     'body': {
         margin: 0,
-        color: "$textColor",
-        backgroundColor: '$bgBodyColor',
+        color: "$lightBlueGray",
+        backgroundColor: '$darkGray',
     },
 
     'h1, h2, h3, h4, h5, h6': {

@@ -1,14 +1,26 @@
-import { Aside, Profile, Card, List, Item, rootGrid, Tech, Main, Title, ProjectPost, PHeader, PBody, PFooter, Info, UseLanguage, Post, Tags, ListTags } from "../styles/home.styles";
+import { Aside, Profile, Card, List, Item, rootGrid, Tech, Main, Title, ProjectPost, PHeader, PBody, PFooter, Info, UseLanguage, Post, Tags, ListTags, UserImage } from "../styles/home.styles";
 import { Row, Col } from "../styles/global/layout.styles";
+import api from "../services/api";
 
 import image from '../assets/images/user/vinicius.jpg';
 
 import { contacts } from "../assets/array/contacts";
 import { techs } from "../assets/array/techs";
 import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 
 const Portfolio = () => {
+
+    const [user, setUser] = useState<any>([]);
+
+    useEffect(() => {
+        api
+            .get('/users/v1nni7')
+            .then((response) => setUser(response.data))
+            .catch((err) => {
+                console.log('Erro com a API:' + err)
+            });
+    }, [])
 
     rootGrid();
 
@@ -17,8 +29,10 @@ const Portfolio = () => {
             <Aside>
                 <Card>
                     <Profile>
-                        <img src={image} alt='Foto de perfil do usuário' />
-                        <h1>Vinicius Silveira Cezar</h1>
+                        <UserImage>
+                            <img src={user.avatar_url} alt='Foto de perfil do usuário' />
+                        </UserImage>
+                        <h1>{user.name}</h1>
                         <h2>Programador FullStack</h2>
                     </Profile>
                 </Card>
@@ -150,7 +164,9 @@ const Portfolio = () => {
                         <Post>
                             <Row>
                                 <Col columnsOccupation={2}>
-                                    <img src={image} alt="" />
+                                    <UserImage>
+                                        <img src={image} alt="" />
+                                    </UserImage>
                                 </Col>
                                 <Col columnsOccupation={8}>
                                     <h2>Titulo Postagens</h2>

@@ -26,24 +26,29 @@ export const Card = styled('div', {
     padding: 12,
     marginBottom: 24,
     borderRadius: 12,
-    backgroundColor: "$bgCardColor",
+    backgroundColor: "$darkBlueGray",
     boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
 });
 
+export const UserImage = styled('div', {
+    display: 'flex',
+    height: '100%',
+    alignItems: 'center',
+
+    'img': {
+        width: 156,
+        height: 156,
+        borderRadius: '50%',
+    }
+});
 
 export const Profile = styled('div', {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
 
-    'img': {
-        width: 156,
-        height: 156,
-        borderRadius: '50%',
-    },
-
     'h1': {
-        margin: '16px 0 6px 0',
+        margin: '26px 0 8px 0',
     },
 
     'h2': {
@@ -80,7 +85,7 @@ export const Tech = styled('h4', {
     padding: '4px 0',
     textAlign: 'center',
     textTransform: 'uppercase',
-    backgroundColor: "$bgTechsColor",
+    backgroundColor: "$lightPink",
 });
 
 export const Main = styled('main', {
@@ -100,60 +105,10 @@ export const Title = styled('div', {
 
     'a': {
         textDecoration: 'none',
-        color: "$textColor",
+        color: "$lightBlueGray",
 
         '&:hover': {
             color: '#8178b3',
-        }
-    }
-});
-
-export const Row = styled('div', {
-    display: 'flex',
-    flexWrap: 'wrap',
-});
-
-export const Col = styled('div', {
-    flex: '0 0 auto',
-    padding: '6px',
-    variants: {
-        numberCols: {
-            1: {
-                width: '8.333333333333333%',
-            },
-            2: {
-                width: '16.66666666666667%',
-            },
-            3: {
-                width: '25%',
-            },
-            4: {
-                width: '33.33333333333333%',
-            },
-            5: {
-                width: '41.66666666666666%',
-            },
-            6: {
-                width: '50%',
-            },
-            7: {
-                width: '58.33333333333333%',
-            },
-            8: {
-                width: '66.66666666666667%',
-            },
-            9: {
-                width: '75%',
-            },
-            10: {
-                width: '83.33333333333333%',
-            },
-            11: {
-                width: '91.66666666666666%',
-            },
-            12: {
-                width: '100%',
-            },
         }
     }
 });
@@ -242,8 +197,7 @@ export const Post = styled('div', {
     },
 
     'img': {
-        width: '160px',
-        height: '160px',
+        maxHeight: 172,
         borderRadius: '50%',
     },
 }); 

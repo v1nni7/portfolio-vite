@@ -1,6 +1,6 @@
 import AppRoutes from "./Routes";
 
-import { globalStyles } from "./styles/global/Global";
+import { globalStyles } from "./styles/global/global.styles";
 
 const App = () => {
 

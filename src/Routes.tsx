@@ -6,12 +6,27 @@ import {
 
 import Portfolio from './pages/Portfolio';
 
+import Home from './pages/Home';
+import { AuthProvider, RequireAuth } from './hooks/auth';
+import Login from './pages/Login';
+
+
 const AppRoutes = () => {
     return (
         <Router>
-            <Routes>
-                <Route index element={<Portfolio />} />
-            </Routes>
+            <AuthProvider>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route
+                        path='/portfolio'
+                        element={
+                            <RequireAuth>
+                                <Portfolio />
+                            </RequireAuth>
+                        } />
+                    <Route path='/login' element={<Login />} />
+                </Routes>
+            </AuthProvider>
         </Router>
     )
 }
