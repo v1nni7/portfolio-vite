@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { getCookie } from "./cookies";
 
 export const fakeAuthProvider = {
     isAuthenticated: false,
@@ -47,34 +48,14 @@ export function useAuth() {
     return React.useContext(AuthContext);
 }
 
-export function AuthStatus() {
-    let auth = useAuth();
-    let navigate = useNavigate();
-
-    if (!auth.user) {
-        return <p>Você não está logado!</p>
-    }
-
-    return (
-        <p>
-            Bem vindo {auth.user}!{' '}
-
-            <button
-                onClick={() => {
-                    auth.signout(() => navigate('/'));
-                }}
-            >
-                Sair
-            </button>
-        </p>
-    )
-}
-
 export function RequireAuth({ children }: { children: JSX.Element }) {
-    let auth = useAuth();
+    let auth = getCookie('loggedin');
+    console.log(auth)
+
     let location = useLocation();
 
-    if (!auth.user) {
+
+    if (auth == '') {
         return <Navigate to="/login" state={{ from: location }} replace />
     }
 

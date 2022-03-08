@@ -13,6 +13,25 @@ export const BoxLogin = styled('div', {
     borderRadius: 12,
     backgroundColor: "$darkBlueGray",
     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+
+    '.error': {
+        display: 'none',
+        padding: 12,
+    },
+
+    '.error.show': {
+        display: 'block',
+    },
+
+    '.error.show h5': {
+        color: 'red',
+        margin: 0,
+        border: '1px red solid',
+        fontSize: '1rem',
+        fontWeight: '300',
+        textAlign: 'center',
+        padding: 12,
+    }
 });
 
 export const TitleLogin = styled('h2', {
@@ -50,6 +69,10 @@ export const FormGroup = styled('div', {
             outline: 'none',
         }
     }
+});
+
+export const CheckInput = styled('input', {
+    
 });
 
 export const Button = styled('button', {
