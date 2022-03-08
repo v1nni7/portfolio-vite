@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import React, { useCallback } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { BoxLogin, Button, SectionLogin, FormGroup, TitleLogin, CheckInput } from "../styles/login.styles";
-import { fakeAuthProvider, useAuth } from "../hooks/auth";
+import { useAuth } from "../hooks/auth";
 import * as Yup from 'yup';
 import api from "../services/api";
 import { getCookie, setCookie } from "../hooks/cookies";
@@ -33,14 +33,27 @@ const Login = () => {
             checkStayConnected.setAttribute('value', 'true');
         });
 
+        if (getCookie('loggedin') == 'true') {
+
+            navigate('/portfolio');
+    
+        }
+
     }
 
-    const displayError = (err: string) => {
-        var error = document.querySelector('.error');
-        var textError = document.querySelector('.error h5');
+    const displayError = async (err: string) => {
+        const checkErrorMessages = document.querySelectorAll('.error.show');
+        const displayMessage = document.querySelector('.error h5') as HTMLElement;
 
-        error?.classList.add('show');
-        textError?.append(err);
+        document.querySelector('.error')?.classList.add('show')
+        console.log(checkErrorMessages.length)
+
+        if (checkErrorMessages.length >= 1) {
+            displayMessage.innerHTML = err
+        } else {
+            displayMessage?.append(err);
+        }
+
     }
 
     let navigate = useNavigate();
@@ -64,17 +77,19 @@ const Login = () => {
             } else {
                 if (response.data) {
                     if (data.stayConnected == true) {
-                        
-                        
+                        var now = new Date();
+                        var time = now.getTime();
+                        var expireTime = time + 1000 * 86400 * 90;
+                        now.setTime(expireTime)
+                        const expire = now.toUTCString()
 
-                       /*  setCookie('loggedin', response.data.auth, ctemp) */
+                        setCookie('loggedin', response.data.auth, expire);
                     }
                     let email: string = response.data.email
 
-                    /* auth.signin(email, () => {
+                    auth.signin(email, () => {
                         navigate(from, { replace: true });
-                    }); */
-
+                    });
                 }
             }
 
@@ -152,7 +167,6 @@ const Login = () => {
                                     </FormGroup>
                                 </Form>
                             </>
-
                         )}
                     </Formik>
                 </BoxLogin>

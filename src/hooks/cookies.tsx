@@ -1,4 +1,4 @@
-export const setCookie = (cname: string, cvalue: string, ctemp: number) => {
+export const setCookie = (cname: string, cvalue: string, ctemp: string) => {
     document.cookie = `${cname}=${cvalue}; expires=Thu, ${ctemp}; path="/"`;
 }
 
