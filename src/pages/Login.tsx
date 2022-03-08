@@ -9,6 +9,16 @@ import { getCookie, setCookie } from "../hooks/cookies";
 
 const Login = () => {
 
+    /**
+     *  Após o carregamento da página todos os Script da <Login /> são carregados
+     *  
+     *  Linhas
+     *  24 - 40 - Animação dos Labels
+     *  42 - 44 - Adicionando Evento de clique na checkbox para alterar seu valor
+     *  46 - 50 - Verifica se o usuário está logado e navega até a página /portfolio 
+     *  
+     */
+
     window.onload = () => {
 
         const formControl = document.querySelectorAll('.form-control');
@@ -36,10 +46,17 @@ const Login = () => {
         if (getCookie('loggedin') == 'true') {
 
             navigate('/portfolio');
-    
-        }
 
+        }
     }
+
+    /**
+     * 
+     *  Essa função tem como principal objetivo pegar o erro da API (@param err)
+     *      e exibir esse erro na tela;
+     * 
+     * @param err 
+     */
 
     const displayError = async (err: string) => {
         const checkErrorMessages = document.querySelectorAll('.error.show');
@@ -56,11 +73,19 @@ const Login = () => {
 
     }
 
+    /**
+     *  Definindo alguns componentes de autenticação e navegação
+     */
     let navigate = useNavigate();
     let auth = useAuth();
 
     let from = '/portfolio';
 
+    /**
+     * Essa função tem como objetivo pegar os dados (@param data) inserindo no form e verificar se são válidos
+     * após a validação os dados são submetidos para a API onde será executada a rota que verificara se o login é válido.
+     * 
+     */
     const handleLogin = useCallback(async (data?) => {
         try {
             const schema = Yup.object().shape({
@@ -98,12 +123,20 @@ const Login = () => {
         }
     }, []);
 
+    /**
+     * Cria interface para a tipagem dos dados
+     * @param string
+     */
     interface FormValues {
         email: string,
         password: string,
         stayConnected: string,
     }
 
+    /**
+     * Valores iniciais setados para os formulários
+     * @param string
+     */
     const initialValues: FormValues = {
         email: '',
         password: '',
