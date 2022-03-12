@@ -4,44 +4,13 @@ import api from "../services/api";
 
 import image from '../assets/images/user/vinicius.jpg';
 
-import { techs } from "../assets/array/techs";
 import { Link } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 
 const Portfolio = () => {
 
-    /*
-
-    const getStorage = useCallback(async () => {
-        try {
-            const storage: any = localStorage.getItem('login');
-            setStorage(JSON.parse(storage));
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
-
-    const handleUserInfo = useCallback(async (id: number) => {
-        try {
-            const response = api.get(`/users/${id}`);
-            response.then((response) => {
-                if (response.data) {
-                    setUser(response.data)
-                } else {
-                    console.log('Erro de comunicação com a API')
-                }
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
-
-    useEffect(() => {
-        getStorage();
-        handleUserInfo(2);
-    }, [handleUserInfo, getStorage]); */
-
     const [user, setUser] = useState<any>([]);
+    const [techs, setTechs] = useState<any>([]);
 
     const userID: any = localStorage.getItem('user_id');
 
@@ -60,9 +29,25 @@ const Portfolio = () => {
         }
     }, []);
 
+    const handleTechs = useCallback(async (id: number) => {
+        try {
+            const response = api.get(`/relationshipUserTech/${id}`);
+            response.then((response) => {
+                if (response.data) {
+                    setTechs(response.data);
+                } else {
+                    console.log('Erro de comunicação com a API');
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
     useEffect(() => {
+        handleTechs(userID);
         handleUserInfo(userID);
-    }, [handleUserInfo])
+    }, [handleTechs, handleUserInfo])
 
 
     const contacts = [
@@ -127,7 +112,7 @@ const Portfolio = () => {
 
                 <Card>
                     <List>
-                         {contacts.map(c => {
+                        {contacts.map(c => {
                             return (
                                 <Item key={c.id}>
                                     <i className={`bi ${c.icon}`}></i> <h3>{c.socialNetwork}</h3>
@@ -139,15 +124,39 @@ const Portfolio = () => {
 
                 <Card>
                     <h2>Tecnologias</h2>
-                    <Row>
-                        {techs.map(t => {
-                            return (
-                                <Col columnsOccupation={4} key={t.id}>
-                                    <Tech>{t.tech}</Tech>
+                    {techs.map((t: any) => {
+                        return (
+                            <Row key={t.id}>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech1}</Tech>
                                 </Col>
-                            )
-                        })}
-                    </Row>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech2}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech3}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech4}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech5}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech6}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech7}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech8}</Tech>
+                                </Col>
+                                <Col columnsOccupation={4}>
+                                    <Tech>{t.tech9}</Tech>
+                                </Col>
+                            </Row>
+                        )
+                    })}
                 </Card>
             </Aside>
 

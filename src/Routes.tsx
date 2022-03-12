@@ -9,6 +9,7 @@ import Portfolio from './pages/Portfolio';
 import Home from './pages/Home';
 import { AuthProvider, RequireAuth } from './hooks/auth';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 
 const AppRoutes = () => {
@@ -24,7 +25,8 @@ const AppRoutes = () => {
                                 <Portfolio />
                             </RequireAuth>
                         } />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='login' element={<Login />} />
+                    <Route path='cadastro' element={<Register />} />
                 </Routes>
             </AuthProvider>
         </Router>
