@@ -101,6 +101,10 @@ const Login = () => {
                 displayError(response.data.error);
             } else {
                 if (response.data) {
+
+                    const userID = response.data.id;
+                    localStorage.setItem('user_id', userID);
+
                     if (data.stayConnected == true) {
                         var now = new Date();
                         var time = now.getTime();
@@ -110,7 +114,10 @@ const Login = () => {
 
                         setCookie('loggedin', response.data.auth, expire);
                     }
-                    let email: string = response.data.email
+                    
+                    let email: string = response.data.email;
+
+                    setCookie('loggedin', response.data.auth, 'session');
 
                     auth.signin(email, () => {
                         navigate(from, { replace: true });

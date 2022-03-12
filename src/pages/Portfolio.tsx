@@ -4,23 +4,111 @@ import api from "../services/api";
 
 import image from '../assets/images/user/vinicius.jpg';
 
-import { contacts } from "../assets/array/contacts";
 import { techs } from "../assets/array/techs";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Portfolio = () => {
 
-    const [user, setUser] = useState<any>([]);
+    /*
+
+    const getStorage = useCallback(async () => {
+        try {
+            const storage: any = localStorage.getItem('login');
+            setStorage(JSON.parse(storage));
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    const handleUserInfo = useCallback(async (id: number) => {
+        try {
+            const response = api.get(`/users/${id}`);
+            response.then((response) => {
+                if (response.data) {
+                    setUser(response.data)
+                } else {
+                    console.log('Erro de comunicação com a API')
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
 
     useEffect(() => {
-        api
-            .get('/users/v1nni7')
-            .then((response) => setUser(response.data))
-            .catch((err) => {
-                console.log('Erro com a API:' + err)
+        getStorage();
+        handleUserInfo(2);
+    }, [handleUserInfo, getStorage]); */
+
+    const [user, setUser] = useState<any>([]);
+
+    const userID: any = localStorage.getItem('user_id');
+
+    const handleUserInfo = useCallback(async (id: number) => {
+        try {
+            const response = api.get(`/users/${id}`);
+            response.then((response) => {
+                if (response.data) {
+                    setUser(response.data);
+                } else {
+                    console.log('Erro de comunicação com a API');
+                }
             });
-    }, [])
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    useEffect(() => {
+        handleUserInfo(userID);
+    }, [handleUserInfo])
+
+
+    const contacts = [
+        {
+            id: 1,
+            icon: 'bi-geo-alt',
+            link: '',
+            socialNetwork: user.location,
+        },
+        {
+            id: 2,
+            icon: 'bi-briefcase',
+            link: '',
+            socialNetwork: user.companyWork,
+        },
+        {
+            id: 3,
+            icon: 'bi-github',
+            link: '',
+            socialNetwork: user.github,
+        },
+        {
+            id: 4,
+            icon: 'bi-linkedin',
+            link: '',
+            socialNetwork: user.linkedin,
+        },
+        {
+            id: 5,
+            icon: 'bi-twitter',
+            link: '',
+            socialNetwork: user.twitter,
+        },
+        {
+            id: 6,
+            icon: 'bi-globe',
+            link: '',
+            socialNetwork: `Em desenvolvimento`,
+        },
+        {
+            id: 7,
+            icon: 'bi-envelope',
+            link: '',
+            socialNetwork: user.professionalEmail,
+        },
+    ]
 
     rootGrid();
 
@@ -30,16 +118,16 @@ const Portfolio = () => {
                 <Card>
                     <Profile>
                         <UserImage>
-                            <img src={user.avatar_url} alt='Foto de perfil do usuário' />
+                            <img src={image} alt='Foto de perfil do usuário' />
                         </UserImage>
-                        <h1>{user.name}</h1>
-                        <h2>Programador FullStack</h2>
+                        <h1>{user.fName}</h1>
+                        <h2>{user.carrer}</h2>
                     </Profile>
                 </Card>
 
                 <Card>
                     <List>
-                        {contacts.map(c => {
+                         {contacts.map(c => {
                             return (
                                 <Item key={c.id}>
                                     <i className={`bi ${c.icon}`}></i> <h3>{c.socialNetwork}</h3>
