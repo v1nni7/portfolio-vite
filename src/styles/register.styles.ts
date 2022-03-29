@@ -8,7 +8,7 @@ export const SectionRegister = styled('section', {
 });
 
 export const BoxRegister = styled('div', {
-    width: 1200,
+    width: 720,
     padding: 20,
     borderRadius: 12,
     backgroundColor: "$darkBlueGray",

@@ -9,16 +9,6 @@ import { getCookie, setCookie } from "../hooks/cookies";
 
 const Login = () => {
 
-    /**
-     *  Após o carregamento da página todos os Script da <Login /> são carregados
-     *  
-     *  Linhas
-     *  24 - 40 - Animação dos Labels
-     *  42 - 44 - Adicionando Evento de clique na checkbox para alterar seu valor
-     *  46 - 50 - Verifica se o usuário está logado e navega até a página /portfolio 
-     *  
-     */
-
     window.onload = () => {
 
         const formControl = document.querySelectorAll('.form-control');

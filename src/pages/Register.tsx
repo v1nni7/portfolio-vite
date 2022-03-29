@@ -1,6 +1,8 @@
 import { Form, Formik } from "formik";
 import { useCallback } from "react";
+import { selectThisElement } from "../components/utils/utils";
 import { BoxLogin, FormGroup, SectionLogin, TitleLogin } from "../styles/login.styles";
+import { BoxRegister, SectionRegister } from "../styles/register.styles";
 
 const Register = () => {
 
@@ -36,9 +38,9 @@ const Register = () => {
 
     return (
         <>
-            <SectionLogin>
-                <BoxLogin>
-                    <TitleLogin>Cadastrar</TitleLogin>
+            <SectionRegister>
+                <BoxRegister>
+                    <TitleLogin>Informações Pessoais</TitleLogin>
                     <div className="error">
                         <h5></h5>
                     </div>
@@ -51,35 +53,35 @@ const Register = () => {
                             <>
                                 <Form>
                                     <FormGroup>
+                                        <label htmlFor="" className="form-label unfocused">Nome</label>
                                         <input className='form-control' type="text" />
                                     </FormGroup>
                                     <FormGroup>
+                                        <label htmlFor="" className="form-label unfocused">Sobrenome</label>
                                         <input className='form-control' type="text" />
                                     </FormGroup>
                                     <FormGroup>
+                                        <label htmlFor="" className="form-label unfocused">Email</label>
                                         <input className='form-control' type="text" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <input type="text" />
+                                        <label htmlFor="" className="form-label unfocused">Celular</label>
+                                        <input className='form-control' type="text" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <input type="text" />
+                                        <label htmlFor="" className="form-label unfocused">Senha</label>
+                                        <input className='form-control' type="text" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <input type="text" />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <input type="text" />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <input type="text" />
+                                        <label htmlFor="" className="form-label unfocused">Confirme sua senha</label>
+                                        <input className='form-control' type="text" />
                                     </FormGroup>
                                 </Form>
                             </>
                         )}
                     </Formik>
-                </BoxLogin>
-            </SectionLogin>
+                </BoxRegister>
+            </SectionRegister>
         </>
     )
 }
